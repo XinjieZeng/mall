@@ -1,10 +1,9 @@
 <template>
   <div id="home">
     <nav-bar class="home-nav">
-      <div slot="center">购物街</div>
+      <div slot="center">Shopping</div>
     </nav-bar>
-    <home-swiper :banners="banners" />
-
+    <home-swiper/>
     <recommend-view :recommends="recommends"/>
 
   </div>
@@ -31,7 +30,6 @@ export default {
   data() {
     return {
       res: [],
-      banners: [],
       recommends: []
     }
   },
@@ -44,7 +42,7 @@ export default {
       this.recommends = this.res.slice(6, 10);
 
     }).catch(err => {
-      console.log(res);
+      console.log(err);
    })
   }
 }

@@ -1,91 +1,160 @@
 <template>
-  <swiper ref="mySwiper" :options="swiperOption">
+  <div class="wrap">
+    <ul class="list">
+      <li class="item active"><img src="../../../assets/image/banner/banner1.jpeg"></li>
 
-    <swiper-slide v-for="item in banners" :key="item.title">
-        <a :href="item.link">
-          <img class='banner-img' :src='item.image' alt="item.title">
-        </a>
-      </swiper-slide>
+      <li class="item"><img src="../../../assets/image/banner/banner2.png"></li>
 
-      <div class="swiper-pagination" slot="pagination"></div>
+    </ul>
 
+    <ul class="pointList">
+      <li class="point active" data-index="0" @click="jump(0)"></li>
+      <li class="point" data-index="1" @click="jump(1)"></li>
+    </ul>
 
-  </swiper>
+  </div>
+
 </template>
 
+<style scoped>
+
+.wrap {
+  width: 100%;
+  height: 250px;
+  display: flex;
+
+  position: relative;
+
+}
+
+.list {
+  width: 800px;
+  height: 250px;
+  padding-top: 0;
+  margin-top: 0;
+  list-style: none;
+  position: relative;
+  padding-left: 0;
+
+}
+
+.item {
+  width: 100%;
+  height: 250px;
+  color: white;
+  font-size: 50px;
+  position:absolute;
+  opacity: 0;
+  transition: all .8s;
+
+}
+
+.item img {
+  margin-top: 0;
+  width: 100%;
+  height: 250px;
+}
+.item.active {
+  opacity: 1;
+  z-index: 10;
+
+}
+
+.pointList {
+  padding-left: 0;
+  list-style: none;
+  position: absolute;
+  right: 20px;
+  bottom: 5px;
+  z-index:1000;
+
+}
+
+.point {
+  width: 13px;
+  height: 13px;
+  background-color: rgba(0,0,0,0.6);
+  border-radius: 100%;
+  float: left;
+  margin-right: 10px;
+  margin-bottom: 0;
+  border-style: solid;
+  border-width: 2px;
+  border-color: rgba(255, 255, 255, 0.6);
+  cursor:pointer;
+}
+
+.point.active {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+
+</style>
+
+
 <script>
-
-import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
-
-// import style (<= Swiper 5.x)
-import 'swiper/css/swiper.css'
-
-
 
 
 export default {
   name: "HomeSwiper",
-  props: {
-    banners: {
-      type: Array,
-      default() {
-        return [];
+  data() {
+    return {
+      items: document.getElementsByClassName('item'),
+      points: document.getElementsByClassName('point'),
+      index: 0,
+      time:0,
+    }
+  },
+  methods: {
+    clearActive() {
+      for(let i = 0; i < this.items.length; i++) {
+        this.items[i].className = 'item';
+        this.points[i].className = 'point';
       }
     },
-    swiperOption: {
-      pagination: {
-        el: '.swiper-pagination'
-      },
+    goIndex() {
+      this.clearActive();
+      this.points[this.index].className='point active';
+      this.items[this.index].className='item active';
+    },
+    goNext() {
+      if (this.index < 1) {
+        this.index ++;
+      }
+      else {
+        this.index = 0;
+      }
 
+      this.goIndex();
+
+    },
+    goPre() {
+      if (this.index === 0) {
+        this.index = this.size - 1;
+      }
+      else {
+        index --;
+      }
+      this.goIndex();
+    },
+    jump(index) {
+      this.index = index;
+      this.goIndex();
+      this.time = 0;
     }
-  },
-  computed:{
-    swiper() {
-      return this.$refs.mySwiper.swiper;
-    }
+
   },
   mounted() {
-    while(true) {
-
-    }
-  },
-  components: {
-    Swiper,
-    SwiperSlide
+    return new Promise((resolve => {
+      setTimeout(() => {
+        this.time ++;
+        if (this.time === 20) {
+          this.goNext();
+          this.time = 0;
+        }
+      }, 100)
+    }))
   }
 }
 </script>
 
-<style scoped>
-
-.circle{	/*设置圆点位置*/
-  position: absolute;/*给子元素设置绝对定位，相对于父元素*/
-  left:30px;/*距离父元素内部的右边距离*/
-  bottom:25px;/*距离父元素内部的上边距离*/
-}
-.circle a{	/*设置圆点样式*/
-  display: inline-block;/*设置a链接为行内块，可以设置宽高，不换行*/
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;/*设置圆边，把方形变成圆形*/
-  background: rgba(255,255,255,0.5);/*背景颜色设置不透明*/
-  margin-right: 5px;/*设置每个a距离右边5px,圆点之间距离*/
-
-}
-.circle a:hover{	/*设置鼠标滑动时圆点样式*/
-  background: #fff;/*圆点背景颜色*/
-  border:2px solid red;/*圆点边框样式*/
-  width: 11px;
-  height: 11px;
-  border-color:rgba(0,255,0,0.5) ;/*圆点边框不透明度*/
-}
-
-
-.banner-img {
-  display: block;
-  margin-left:auto;
-  margin-right: auto;
-  height: 200px;
-  width: 70%;
-}
-</style>

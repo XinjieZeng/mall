@@ -1,12 +1,15 @@
 <template>
-  <div class="recommend">
-    <div v-for="item in recommends" class="recommend-item">
-      <a :href="item.link">
-        <img :src="item.image" alt="item.title">
-        <div> {{item.title}}</div>
-      </a>
+
+    <div class="recommend">
+      <div v-for="item in recommends" class="recommend-item">
+        <a :href="item.link">
+          <img :src="item.image" alt="item.title">
+          <p>{{item.rating}}</p>
+        </a>
+      </div>
     </div>
-  </div>
+
+
 </template>
 
 <script>
@@ -30,20 +33,28 @@ export default {
   width: 100%;
   font-size: 12px;
   text-align: center;
-  padding: 10px 0 20px 0;
-  border-bottom: 10px solid #eee;
+  padding: 5px 0 0 0;
+  border-bottom: 5px solid #eee;
 }
 
 .recommend-item {
   flex: 1;
+}
 
+.recommend-item a {
+  margin-bottom: 0;
+}
+
+.recommend-item p {
+  margin-top: 1px;
 }
 
 .recommend-item img{
-  width: 70px;
-  height: 70px;
-
-  margin-bottom: 10px;
+  width: 60px;
+  height: 60px;
+  margin-bottom: 0;
+  border-radius: 100%;
+  margin-top: 5px;
 }
 
 </style>
