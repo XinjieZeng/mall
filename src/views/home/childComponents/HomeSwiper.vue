@@ -4,12 +4,16 @@
       <li class="item active"><img src="../../../assets/image/banner/banner1.jpeg"></li>
 
       <li class="item"><img src="../../../assets/image/banner/banner2.png"></li>
+      <li class="item"><img src="@/assets/image/banner/banner3.jpeg"></li>
+
+
 
     </ul>
 
     <ul class="pointList">
       <li class="point active" data-index="0" @click="jump(0)"></li>
       <li class="point" data-index="1" @click="jump(1)"></li>
+      <li class="point" data-index="1" @click="jump(2)"></li>
     </ul>
 
   </div>
@@ -118,7 +122,7 @@ export default {
       this.items[this.index].className='item active';
     },
     goNext() {
-      if (this.index < 1) {
+      if (this.index < 2) {
         this.index ++;
       }
       else {

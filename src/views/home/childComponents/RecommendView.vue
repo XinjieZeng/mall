@@ -4,7 +4,7 @@
       <div v-for="item in recommends" class="recommend-item">
         <a :href="item.link">
           <img :src="item.image" alt="item.title">
-          <p>{{item.rating}}</p>
+<!--          <p>{{item.rating}}</p>-->
         </a>
       </div>
     </div>
@@ -55,6 +55,8 @@ export default {
   margin-bottom: 0;
   border-radius: 100%;
   margin-top: 5px;
+  cursor:pointer;
+
 }
 
 </style>
