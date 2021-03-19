@@ -149,15 +149,13 @@ export default {
 
   },
   mounted() {
-    return new Promise((resolve => {
-      setTimeout(() => {
-        this.time ++;
-        if (this.time === 20) {
-          this.goNext();
-          this.time = 0;
-        }
-      }, 100)
-    }))
+    setTimeout(() => {
+      this.time ++;
+      if (this.time === 20) {
+        this.goNext();
+        this.time = 0;
+      }
+    }, 100)
   }
 }
 </script>

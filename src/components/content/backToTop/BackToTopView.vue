@@ -18,14 +18,14 @@ export default {
     bottom: 70px;
     border: 2px solid white;
     border-radius: 100%;
-    box-shadow: 2px 2px 2px rgba(0,0,0,.5);
+    box-shadow: 1px 1px 2px rgba(0,0,0,.5);
     background-color:white;
 
   }
 
   .back-top img {
-    width: 25px;
-    height: 25px;
+    width: 30px;
+    height: 30px;
 
   }
 

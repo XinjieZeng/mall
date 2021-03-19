@@ -1,13 +1,86 @@
 <template>
-  <h2> category </h2>
+  <div class="wrapper">
+      <ul class="content">
+        <li>fkjfksjjfskl</li>
+        <li>fkjfksjjfskl</li>
+        <li>fkjfksjjfskl</li>
+        <li>fkjfksjjfskl</li>
+        <li>fkjfksjjfskl</li>
+        <li>fkjfksjjfskl</li>
+        <li>fkjfksjjfskl</li>
+        <li>fkjfksjjfskl</li>
+        <li>fkjfksjjfskl</li>
+        <li>fkjfksjjfskl</li>
+        <li>fkjfksjjfskl</li>
+        <li>fkjfksjjfskl</li>
+        <li>fkjfksjjfskl</li>
+        <li>fkjfksjjfskl</li>
+        <li>fkjfksjjfskl</li>
+        <li>fkjfksjjfskl</li>
+        <li>fkjfksjjfskl</li>
+        <li>fkjfksjjfskl</li>
+        <li>fkjfksjjfskl</li>
+        <li>fkjfksjjfskl</li>
+        <li>fkjfksjjfskl</li>
+        <li>fkjfksjjfskl</li>
+        <li>fkjfksjjfskl</li>
+        <li>fkjfksjjfskl</li>
+        <li>fkjfksjjfskl</li>
+        <li>fkjfksjjfskl</li>
+        <li>fkjfksjjfskl</li>
+        <li>fkjfksjjfskl</li>
+        <li>fkjfksjjfskl</li>
+        <li>fkjfksjjfskl</li>
+        <li>fkjfksjjfskl</li>
+        <li>fkjfksjjfskl</li>
+        <li>fkjfksjjfskl</li>
+        <li>fkjfksjjfskl</li>
+        <li>fkjfksjjfskl</li>
+        <li>fkjfksjjfskl</li>
+        <li>fkjfksjjfskl</li>
+        <li>fkjfksjjfskl</li>
+        <li>fkjfksjjfskl</li>
+        <li>fkjfksjjfskl</li>
+        <li>fkjfksjjfskl</li>
+      </ul>
+  </div>
+
 </template>
 
 <script>
+import BScroll from 'better-scroll';
+
 export default {
-name: "Category"
+  name: "Category",
+  data() {
+    return {
+      scroll: null,
+    }
+  },
+  mounted() {
+    this.scroll = new BScroll('.wrapper', {
+      probeType: 3,
+      pullUpLoad: true,
+      click:true
+    });
+
+    this.scroll.on('scroll', (position) => {
+      console.log(position);
+    });
+
+    this.scroll.on('pullingUp', () => {
+      console.log('load more');
+    });
+  }
 }
 </script>
 
 <style scoped>
+.wrapper {
+  height: 150px;
+  background-color: red;
+  overflow: hidden;
+  /*overflow-y: scroll;*/
+}
 
 </style>
