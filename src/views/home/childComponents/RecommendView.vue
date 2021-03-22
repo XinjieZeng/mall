@@ -3,7 +3,7 @@
     <div class="recommend">
       <div v-for="item in recommends" class="recommend-item">
         <a :href="item.link">
-          <img :src="item.image" alt="item.title">
+          <img :src="item.image" alt="item.title" @load="recommendImageLoad">
 <!--          <p>{{item.rating}}</p>-->
         </a>
       </div>
@@ -21,6 +21,12 @@ export default {
       default() {
         return [];
       }
+    }
+  },
+  methods: {
+    recommendImageLoad() {
+      this.$emit('recommendImageLoad')
+
     }
   }
 }

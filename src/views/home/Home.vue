@@ -4,16 +4,25 @@
       <div slot="center">购物街</div>
     </nav-bar>
 
+    <tab-control
+     :titles="titles"
+     class="tab-control"
+     @tabClick="tabClick"
+     ref="tabControl1" v-show="isTabFixed"></tab-control>
+
     <scroll class="content"
             ref="scroll"
             :probe-type="3"
             @scroll="contentScroll"
             :pull-up-load="true"
             @loadMore="loadMore">
-      <home-swiper/>
-      <recommend-view :recommends="recommends"/>
+      <home-swiper @imageLoad="imageLoad" />
+      <recommend-view :recommends="recommends" @recommendImageLoad="imageLoad"/>
       <feature-view/>
-      <tab-control :titles="titles" class="tab-control" @tabClick="tabClick"></tab-control>
+      <tab-control
+       :titles="titles"
+       @tabClick="tabClick"
+       ref="tabControl2"></tab-control>
       <goods-list :goods="goods[currentType]" />
     </scroll>
     <back-to-top-view @click.native="backClick" v-show="isShow"/>
@@ -44,6 +53,7 @@ import FeatureView from "@/views/home/childComponents/FeatureView";
 import GoodsList from "@/components/content/goods/GoodsList";
 
 import {getHomeMultidata} from "@/network/home/home";
+import {debounce} from "@/components/utils/utils";
 
 
 export default {
@@ -70,10 +80,23 @@ export default {
       titles: ['流行', '新款', '精选'],
       currentType: 'pop',
       isShow: false,
+      tabOffsetTop: 0,
+      isTabFixed: false,
     }
   },
   created() {
   this.getHomeMultiData();
+  },
+  mounted() {
+    const refresh = debounce(this.$refs.scroll.refresh, 500);
+
+    //监听item 图片加载完成
+    this.$bus.$on('itemImageLoad', () => {
+      // this.$refs.scroll && this.$refs.scroll.refresh();
+      refresh();
+
+    })
+
   },
   methods: {
     getHomeMultiData() {
@@ -109,12 +132,16 @@ export default {
           this.currentType = 'sell';
           break;
       }
+
+      this.$refs.tabControl1.currentIndex = index;
+      this.$refs.tabControl2.currentIndex = index;
     },
     backClick() {
       this.$refs.scroll.scrollTo(0,0);
       this.scrollTop = document.body.scrollTop;
     },
     contentScroll(position) {
+      //1,  determine if back to top icon is shown
       if (position.y <= -500) {
         this.isShow = true;
       }
@@ -122,11 +149,24 @@ export default {
         this.isShow = false;
       }
 
+      // 2. determine if position of tabControl should be fixed
+      if (-position.y > this.tabOffsetTop) {
+        this.isTabFixed = true;
+      }
+      else {
+        this.isTabFixed = false;
+      }
+
     },
     loadMore() {
       this.getHomeGoods(this.currentType);
-      this.$refs.scroll.scroll.refresh();
       this.$refs.scroll.finishPullUp();
+    },
+    imageLoad() {
+      // console.log(this.$refs.tabControl.$el.offsetTop);
+      if (this.tabOffsetTop < this.$refs.tabControl2.$el.offsetTop) {
+        this.tabOffsetTop = this.$refs.tabControl2.$el.offsetTop;
+      }
     }
   }
 }
@@ -136,11 +176,11 @@ export default {
   .home-nav {
     background-color: var(--color-tint);
     color: var(--color-background);
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    z-index: 100;
+    /*position: fixed;*/
+    /*left: 0;*/
+    /*right: 0;*/
+    /*top: 0;*/
+    /*z-index: 100;*/
   }
 
   #home {
@@ -150,9 +190,11 @@ export default {
   }
 
   .tab-control {
-    position: sticky;
-    top:44px;
-    z-index:100;
+    /*top:44px;*/
+    /*z-index:100;*/
+
+    position: relative;
+    z-index: 100;
     background-color: var(--color-background);
   }
 
@@ -173,4 +215,6 @@ export default {
     left : 0;
     right: 0;
   }
+
+
 </style>

@@ -1,10 +1,12 @@
 <template>
   <div class="wrap">
     <ul class="list">
-      <li class="item active"><img src="../../../assets/image/banner/banner1.jpeg"></li>
+      <li class="item active">
+        <img src="../../../assets/image/banner/banner1.jpeg" @load="imageLoad">
+      </li>
 
-      <li class="item"><img src="../../../assets/image/banner/banner2.png"></li>
-      <li class="item"><img src="@/assets/image/banner/banner3.jpeg"></li>
+      <li class="item"><img src="../../../assets/image/banner/banner2.png" @load="imageLoad"></li>
+      <li class="item"><img src="@/assets/image/banner/banner3.jpeg" @load="imageLoad"></li>
 
 
 
@@ -107,6 +109,7 @@ export default {
       points: document.getElementsByClassName('point'),
       index: 0,
       time:0,
+      isLoad: false,
     }
   },
   methods: {
@@ -145,8 +148,14 @@ export default {
       this.index = index;
       this.goIndex();
       this.time = 0;
-    }
+    },
+    imageLoad() {
+      if (!this.isLoad) {
+        this.$emit('imageLoad');
+      }
 
+      this.isLoad = true;
+    }
   },
   mounted() {
     setTimeout(() => {
