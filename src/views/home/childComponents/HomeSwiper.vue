@@ -1,15 +1,9 @@
 <template>
   <div class="wrap">
     <ul class="list">
-      <li class="item active">
-        <img src="../../../assets/image/banner/banner1.jpeg" @load="imageLoad">
-      </li>
-
+      <li class="item active"><img src="../../../assets/image/banner/banner1.jpeg" @load="imageLoad"></li>
       <li class="item"><img src="../../../assets/image/banner/banner2.png" @load="imageLoad"></li>
       <li class="item"><img src="@/assets/image/banner/banner3.jpeg" @load="imageLoad"></li>
-
-
-
     </ul>
 
     <ul class="pointList">
