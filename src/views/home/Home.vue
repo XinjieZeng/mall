@@ -26,15 +26,6 @@
       <goods-list :goods="goods[currentType]" />
     </scroll>
     <back-to-top-view @click.native="backClick" v-show="isShow"/>
-
-<!--    <ul>-->
-<!--      <li>dsfsfjskfjsklfjs</li>-->
-<!--      <li>dsfsfjskfjsklfjs</li>-->
-<!--      <li>dsfsfjskfjsklfjs</li>-->
-<!--      <li>dsfsfjskfjsklfjs</li>-->
-<!--      <li>dsfsfjskfjsklfjs</li>-->
-<!--    </ul>-->
-
   </div>
 </template>
 

@@ -10,3 +10,14 @@ export function getProductDetailInfo(asin) {
 
   return instance();
 }
+
+export class GoodsInfo {
+  constructor(itemInfo) {
+    this.title = itemInfo.title;
+    this.description = itemInfo.description;
+    this.rating = itemInfo.rating;
+    this.price = itemInfo.buybox_winner.price;
+    this.availability = itemInfo.buybox_winner.availability;
+    this.shipping = itemInfo.buybox_winner.shipping;
+  }
+}

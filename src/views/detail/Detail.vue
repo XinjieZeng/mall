@@ -2,6 +2,18 @@
   <div id="detail">
     <detail-nav-bar />
     <detail-swiper :top-images="topImages"/>
+    <detail-base-info :goods="goods" />
+    <ul>
+      <li>sfsdfsdfsdf</li>
+      <li>sfsdfsdfsdf</li>
+      <li>sfsdfsdfsdf</li>
+      <li>sfsdfsdfsdf</li>
+      <li>sfsdfsdfsdf</li>
+      <li>sfsdfsdfsdf</li>
+      <li>sfsdfsdfsdf</li>
+      <li>sfsdfsdfsdf</li>
+      <li>sfsdfsdfsdf</li>
+    </ul>
   </div>
 </template>
 
@@ -9,8 +21,9 @@
 
 import DetailNavBar from "@/views/detail/childComponents/DetailNavBar";
 
-import {getProductDetailInfo} from '@/network/home/detail';
+import {getProductDetailInfo, GoodsInfo} from '@/network/home/detail';
 import DetailSwiper from "@/views/detail/childComponents/DetailSwiper";
+import DetailBaseInfo from "@/views/detail/childComponents/DetailBaseInfo";
 
 export default {
   name: "Detail",
@@ -30,12 +43,16 @@ export default {
   created() {
     this.asin = this.$route.params.asin;
     getProductDetailInfo(this.asin).then(res => {
+
        this.topImages = res.data.product.images;
+       this.goods = new GoodsInfo(res.data.product);
     })
   },
   components: {
+    DetailNavBar,
     DetailSwiper,
-    DetailNavBar
+    DetailBaseInfo,
+
   }
 
 }
