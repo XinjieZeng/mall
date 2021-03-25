@@ -54,14 +54,14 @@ export default {
 
 .detail-swiper {
   width: 100%;
-  height: 600px;
+  height: 700px;
   display: flex;
   position: relative;
 }
 
 .list {
   width: 800px;
-  height: 600px;
+  height: 700px;
   padding-top: 0;
   margin-top: 0;
   list-style: none;
@@ -72,7 +72,7 @@ export default {
 
 .item {
   width: 100%;
-  height: 600px;
+  height: 700px;
   color: white;
   font-size: 50px;
   position:absolute;
@@ -84,7 +84,7 @@ export default {
 .item img {
   margin-top: 0;
   width: 100%;
-  height: 600px;
+  height: 700px;
   overflow: hidden;
 }
 .item.active {

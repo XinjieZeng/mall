@@ -47,7 +47,6 @@ export default {
 .base-info {
   width: 100%;
   padding-left: 5px;
-  margin-bottom: 30px;
   border-bottom: 3px solid #eee;
 }
 

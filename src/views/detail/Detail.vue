@@ -1,29 +1,31 @@
 <template>
   <div id="detail">
-    <detail-nav-bar />
-    <detail-swiper :top-images="topImages"/>
-    <detail-base-info :goods="goods" />
-    <ul>
-      <li>sfsdfsdfsdf</li>
-      <li>sfsdfsdfsdf</li>
-      <li>sfsdfsdfsdf</li>
-      <li>sfsdfsdfsdf</li>
-      <li>sfsdfsdfsdf</li>
-      <li>sfsdfsdfsdf</li>
-      <li>sfsdfsdfsdf</li>
-      <li>sfsdfsdfsdf</li>
-      <li>sfsdfsdfsdf</li>
-    </ul>
+    <detail-nav-bar class="detail-nav-bar" />
+    <scroll class="content">
+      <detail-swiper :top-images="topImages"/>
+      <detail-base-info :goods="goods" />
+      <detail-goods-info :detail="productDetail" :description="description" />
+<!--      <ul>-->
+<!--        <li>sfsfsdfsdf</li>-->
+<!--        <li>sfsfsdfsdf</li>-->
+<!--        <li>sfsfsdfsdf</li>-->
+<!--        <li>sfsfsdfsdf</li>-->
+<!--        <li>dfsdfsfsdfsdfsdf</li>-->
+<!--      </ul>-->
+    </scroll>
+
   </div>
 </template>
 
 <script>
 
 import DetailNavBar from "@/views/detail/childComponents/DetailNavBar";
+import Scroll from "@/components/common/scroll/Scroll";
 
 import {getProductDetailInfo, GoodsInfo} from '@/network/home/detail';
 import DetailSwiper from "@/views/detail/childComponents/DetailSwiper";
 import DetailBaseInfo from "@/views/detail/childComponents/DetailBaseInfo";
+import DetailGoodsInfo from "@/views/detail/childComponents/DetailGoodsInfo";
 
 export default {
   name: "Detail",
@@ -32,13 +34,9 @@ export default {
       asin: null,
       topImages: [],
       goods: {},
-      productDetail: {
-        type: Object,
-        default() {
-          return null;
-        }
+      productDetail: [],
+      description: []
       }
-    }
   },
   created() {
     this.asin = this.$route.params.asin;
@@ -46,12 +44,18 @@ export default {
 
        this.topImages = res.data.product.images;
        this.goods = new GoodsInfo(res.data.product);
+       console.log(res.data.product.variants[0].images);
+       this.productDetail = res.data.product.variants[0].images;
+       this.description = res.data.product.description.split('*');
     })
   },
   components: {
+
     DetailNavBar,
     DetailSwiper,
     DetailBaseInfo,
+    Scroll,
+    DetailGoodsInfo,
 
   }
 
@@ -59,5 +63,21 @@ export default {
 </script>
 
 <style scoped>
+  #detail {
+    position: relative;
+    z-index: 10;
+    background-color: white;
+    height: 100vh;
+  }
 
+  .detail-nav-bar {
+    position: relative;
+    z-index: 10;
+    background: white;
+    padding-top: 10px;
+  }
+
+  .content {
+    height: calc(100% - 44px);
+  }
 </style>
