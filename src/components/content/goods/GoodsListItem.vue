@@ -4,7 +4,7 @@
     <div class="goods-info">
       <p>{{goodsItems.title}}</p>
       <span class="price">{{goodsItems.raw}}</span>
-      <span class="collect">{{goodsItems.position}}</span>
+      <span class="collect">{{goodsItems.rating}}</span>
     </div>
   </div>
 </template>
@@ -26,6 +26,7 @@ export default {
     },
     itemClick(asin) {
       this.$router.push('/detail/' + asin);
+
     }
   }
 }

@@ -16,7 +16,7 @@ export default {
       default() {
         return[];
       }
-    }
+    },
   }, components: {
     GoodsListItem
   }

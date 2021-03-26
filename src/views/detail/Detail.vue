@@ -5,6 +5,7 @@
       <detail-swiper :top-images="topImages"/>
       <detail-base-info :goods="goods" />
       <detail-goods-info :detail="productDetail" :description="description" />
+      <goods-list :goods="recommends"/>
 <!--      <ul>-->
 <!--        <li>sfsfsdfsdf</li>-->
 <!--        <li>sfsfsdfsdf</li>-->
@@ -26,6 +27,7 @@ import {getProductDetailInfo, GoodsInfo} from '@/network/home/detail';
 import DetailSwiper from "@/views/detail/childComponents/DetailSwiper";
 import DetailBaseInfo from "@/views/detail/childComponents/DetailBaseInfo";
 import DetailGoodsInfo from "@/views/detail/childComponents/DetailGoodsInfo";
+import GoodsList from "@/components/content/goods/GoodsList";
 
 export default {
   name: "Detail",
@@ -35,7 +37,8 @@ export default {
       topImages: [],
       goods: {},
       productDetail: [],
-      description: []
+      description: [],
+      recommends: []
       }
   },
   created() {
@@ -44,9 +47,10 @@ export default {
 
        this.topImages = res.data.product.images;
        this.goods = new GoodsInfo(res.data.product);
-       console.log(res.data.product.variants[0].images);
        this.productDetail = res.data.product.variants[0].images;
        this.description = res.data.product.description.split('*');
+       this.recommends = res.data.sponsored_products;
+
     })
   },
   components: {
@@ -56,6 +60,7 @@ export default {
     DetailBaseInfo,
     Scroll,
     DetailGoodsInfo,
+    GoodsList
 
   }
 
