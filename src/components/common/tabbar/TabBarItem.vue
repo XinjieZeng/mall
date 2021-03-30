@@ -23,7 +23,12 @@ export default {
       type: String,
       default: 'red'
     },
-    path: String
+    path: {
+      type: String,
+      default() {
+        return "";
+      }
+    }
   },
   computed: {
     isActive() {
@@ -36,7 +41,9 @@ export default {
   },
   methods: {
     select() {
-      this.$router.push(this.path);
+      if (this.path !== null && this.path !== "") {
+        this.$router.push(this.path);
+      }
     }
   }
 }
@@ -45,7 +52,7 @@ export default {
 <style scoped>
 .tab-bar-item {
   flex: 1;
-  height: 49px;
+  height: 60px;
   text-align: center;
   font-size: 14px;
 }

@@ -6,14 +6,9 @@
       <detail-base-info :goods="goods" />
       <detail-goods-info :detail="productDetail" :description="description" />
       <goods-list :goods="recommends"/>
-<!--      <ul>-->
-<!--        <li>sfsfsdfsdf</li>-->
-<!--        <li>sfsfsdfsdf</li>-->
-<!--        <li>sfsfsdfsdf</li>-->
-<!--        <li>sfsfsdfsdf</li>-->
-<!--        <li>dfsdfsfsdfsdfsdf</li>-->
-<!--      </ul>-->
     </scroll>
+
+    <detail-button-bar @addCart="addCart"/>
 
   </div>
 </template>
@@ -28,6 +23,7 @@ import DetailSwiper from "@/views/detail/childComponents/DetailSwiper";
 import DetailBaseInfo from "@/views/detail/childComponents/DetailBaseInfo";
 import DetailGoodsInfo from "@/views/detail/childComponents/DetailGoodsInfo";
 import GoodsList from "@/components/content/goods/GoodsList";
+import DetailButtonBar from "@/views/detail/childComponents/DetailButtonBar";
 
 export default {
   name: "Detail",
@@ -53,7 +49,28 @@ export default {
 
     })
   },
+  methods: {
+
+    addCart() {
+      const product = {};
+
+      product.image = this.topImages[0];
+      product.title = this.goods.title;
+      product.desct = this.goods.description;
+      product.price = this.goods.price;
+      product.asin = this.asin;
+      product.count = 1;
+
+      this.$store.commit('addCart', product);
+
+      // for (let item of this.$store.state.cartList) {
+      //   console.log(item);
+      // }
+
+    }
+  },
   components: {
+    DetailButtonBar,
 
     DetailNavBar,
     DetailSwiper,

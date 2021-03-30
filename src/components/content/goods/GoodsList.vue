@@ -1,7 +1,10 @@
 <template>
-  <div class="goods">
-    <goods-list-item v-for="item in goods" :goods-items="item"></goods-list-item>
+  <div>
+    <div class="goods">
+      <goods-list-item v-for="item in goods" :goods-items="item"></goods-list-item>
+    </div>
   </div>
+
 
 </template>
 
@@ -24,6 +27,14 @@ export default {
 </script>
 
 <style scoped>
+
+.recommends {
+  color: var(--color-high-text);
+  margin-left: 10px;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
  .goods {
    display: flex;
    /*according to width to put the number of content in a line*/

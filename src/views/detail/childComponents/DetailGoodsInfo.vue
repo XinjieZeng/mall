@@ -63,7 +63,7 @@ export default {
 
 .other {
   height: 80px;
-  margin-bottom: 50px;
+  margin-bottom: 10px;
   border-bottom: 2px solid #eeeeee;
 }
 
