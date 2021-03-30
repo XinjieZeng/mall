@@ -1,30 +1,30 @@
 <template>
- <tab-bar>
-   <tab-bar-item path="/shop">
+ <tab-bar class="product-bar">
+   <tab-bar-item path="/shop" class="product-bar-item">
      <img src="@/assets/image/detail/shop.svg" alt="" slot="item-icon">
      <img src="@/assets/image/detail/shop_active.svg" alt="" slot="item-icon-active">
-     <div slot="item-text">店铺</div>
+     <div slot="item-text">Shop</div>
    </tab-bar-item>
 
 
-   <tab-bar-item path="/save">
+   <tab-bar-item path="/save" class="product-bar-item">
      <img src="@/assets/image/detail/customer_service.svg" alt="" slot="item-icon">
      <img src="@/assets/image/detail/customer_service_active.svg" alt="" slot="item-icon-active">
-     <div slot="item-text">客服</div>
+     <div slot="item-text">Customer</div>
    </tab-bar-item>
 
-   <tab-bar-item path="/customer-service">
+   <tab-bar-item path="/customer-service" class="product-bar-item">
      <img src="@/assets/image/commons/collect.svg" alt="" slot="item-icon">
      <img src="@/assets/image/commons/collect_active.svg" alt="" slot="item-icon-active">
-     <div slot="item-text">收藏</div>
+     <div slot="item-text">Save</div>
    </tab-bar-item>
 
    <tab-bar-item>
-     <div class="cart" slot="item-text" @click ="addToCart">加入购物车</div>
+     <div class="cart" slot="item-text" @click ="addToCart">Add to Cart</div>
    </tab-bar-item>
 
    <tab-bar-item path="/purchase">
-     <div class='purchase' slot="item-text">购买</div>
+     <div class='purchase' slot="item-text">Buy</div>
    </tab-bar-item>
 
  </tab-bar>
@@ -47,17 +47,26 @@ name: "DetailButtonBar",
 
 <style scoped>
 
+.product-bar {
+  height: 70px;
+  z-index: 200;
+}
+
+.product-bar-item {
+  padding-bottom: 5px;
+}
+
 .cart {
   background-color: yellow;
   text-align: center;
-  line-height: 48px;
+  line-height: 60px;
   color: black;
 }
 
 .purchase {
   background-color: #ff8196;
-  line-height: 48px;
   text-align: center;
+  line-height: 60px;
   color: white;
 }
 </style>

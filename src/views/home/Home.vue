@@ -1,7 +1,7 @@
 <template>
   <div id="home">
     <nav-bar class="home-nav">
-      <div slot="center">购物街</div>
+      <div slot="center">Shopping Mall</div>
     </nav-bar>
 
     <tab-control
@@ -68,7 +68,7 @@ export default {
         'news': [],
         'sell': [],
       },
-      titles: ['流行', '新款', '精选'],
+      titles: ['Best', 'New', 'Trendy'],
       currentType: 'pop',
       isShow: false,
       tabOffsetTop: 0,

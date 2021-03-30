@@ -55,12 +55,13 @@ export default {
   height: 60px;
   text-align: center;
   font-size: 14px;
+
 }
 
 .tab-bar-item img {
   width: 24px;
   height: 24px;
-  margin-top: 3px;
+  margin-top: 10px;
   vertical-align: middle;
 }
 </style>

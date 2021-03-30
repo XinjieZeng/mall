@@ -9,8 +9,6 @@ export default new Vuex.Store({
   },
   mutations: {
     addCart(state, payload) {
-      console.log("add product to cart");
-
       let product = null;
 
       for (let item of state.cartList) {

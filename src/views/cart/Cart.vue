@@ -1,7 +1,7 @@
 <template>
   <div>
     <nav-bar>
-      <div slot="center" class="nav-bar">购物车 </div>
+      <div slot="center" class="nav-bar">Cart ({{cartLength}})</div>
     </nav-bar>
     <div class="cart" v-for="item in this.$store.state.cartList" :key="item.asin">
       <div class="cart-list">
@@ -14,8 +14,6 @@
             <div class="price info">{{item.price.raw}}</div>
             <div class="count info"> X {{item.count}}</div>
           </div>
-
-
         </div>
       </div>
 
@@ -28,8 +26,15 @@
 import CartListItem from "@/views/cart/CartListItem";
 import NavBar from "@/components/common/navbar/NavBar";
 export default {
-name: "Cart",
-  components: {NavBar, CartListItem}
+  name: "Cart",
+  computed: {
+    cartLength() {
+      return this.$store.state.cartList.length;
+    }
+  },
+  components: {
+    NavBar, CartListItem
+  }
 }
 </script>
 
